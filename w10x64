@@ -33,5 +33,5 @@ echo "===================================="
 echo "Username: akuh"
 echo "Password: Akuh.Net"
 echo "===================================="
-qemu-system-x86_64 -nographic -net nic -net user,hostfwd=tcp::30889-:3389 -show-cursor -m 8000M -localtime -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,+nx -M pc -smp cores=4 -vga std -machine type=pc,-usb -device usb-tablet -k en-us -drive file=lite11.qcow2,index=0,media=disk,format=qcow2 -boot once=d > /dev/null 2>&1
+qemu-system-x86_64 -hda lite11.qcow2 -m 8000M -smp cores=4 -net user,hostfwd=tcp::3388-:3389 -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga vmware -nographic  > /dev/null 2>&1
 sleep 43200
